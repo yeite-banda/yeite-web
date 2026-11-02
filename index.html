@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Yeite</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Yeite: rock de autor desde Ciudad Jardín. Próximas fechas, videos y kit de prensa.">
+<link rel="icon" href="favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:wght@500;700;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=Space+Mono:wght@400;700&display=swap">
+<style>
+/* Layout: una sola columna como un cartel de barrio; banda verde arriba, después fechas, video, el yeite, la banda y el kit de prensa. */
+:root {
+  --cal: #EDE6D6;        /* blanco cal: fondo */
+  --cal-2: #E3DAC6;      /* superficie */
+  --follaje: #3F5E3A;    /* verde follaje: marca */
+  --teja: #A34E36;       /* rojo teja: acento */
+  --tronco: #5A4632;     /* marrón tronco: líneas */
+  --cielo: #9DB8C7;      /* celeste cielo: detalle */
+  --tinta: #141414;      /* texto */
+  --tinta-2: #4A4136;    /* texto secundario */
+  --sobre-verde: #EDE6D6;
+  --bg: var(--cal); --surface: var(--cal-2); --fg: var(--tinta); --muted: var(--tinta-2); --line: rgba(90,70,50,.28);
+  --display: "Rubik", "Arial Rounded MT Bold", "Helvetica Neue", Arial, sans-serif;
+  --body: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --mono: "Space Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #171A15; --surface: #20251D; --fg: #EDE6D6; --muted: #C4BAA6; --line: rgba(237,230,214,.18);
+  --follaje: #2F4A2B; --teja: #D07A5E; --cielo: #9DB8C7; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #171A15; --surface: #20251D; --fg: #EDE6D6; --muted: #C4BAA6; --line: rgba(237,230,214,.18);
+  --follaje: #2F4A2B; --teja: #D07A5E; --cielo: #9DB8C7; color-scheme: dark }
+
+body { background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 18px; line-height: 1.55; }
+.wrap { max-width: 920px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+a { color: var(--teja); text-underline-offset: 3px; }
+a:focus-visible, .btn:focus-visible, video:focus-visible { outline: 3px solid var(--cielo); outline-offset: 3px; }
+h1, h2, h3 { font-family: var(--display); line-height: 1.1; text-wrap: balance; margin: 0; }
+h2 { font-size: clamp(28px, 5vw, 40px); font-weight: 800; letter-spacing: -.01em; }
+.label { font-family: var(--mono); font-size: 13px; text-transform: uppercase; letter-spacing: .12em; color: var(--muted); }
+section { padding-block: 56px; border-top: 1px solid var(--line); }
+.stack { display: grid; gap: 20px; }
+
+/* Cabecera: la chapa verde del barrio */
+.top { background: var(--follaje); color: var(--sobre-verde); }
+.top .wrap { padding-block: 40px 44px; display: grid; gap: 22px; }
+.top img.cartel { width: min(560px, 100%); height: auto; display: block; }
+.lema { font-family: var(--display); font-weight: 700; font-size: clamp(26px, 5.4vw, 44px); line-height: 1.1; text-wrap: balance; max-width: 18ch; }
+.top p { margin: 0; font-size: 19px; max-width: 46ch; color: var(--sobre-verde); opacity: .92; }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.btn { display: inline-flex; align-items: center; gap: 8px; font-family: var(--display); font-weight: 700; font-size: 16px; padding: 12px 18px; border-radius: 6px; text-decoration: none; border: 2px solid currentColor; }
+.btn.solid { background: var(--teja); border-color: var(--teja); color: #FFF8EE; }
+.top .btn { color: var(--sobre-verde); }
+.top .btn.solid { color: #FFF8EE; }
+
+/* Fechas: como entradas de papel */
+.fechas { display: grid; gap: 14px; }
+.fecha { display: grid; grid-template-columns: 112px 1fr auto; gap: 18px; align-items: center; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 18px 20px; position: relative; }
+.fecha::before { content: ""; position: absolute; left: 132px; top: 10px; bottom: 10px; border-left: 2px dashed var(--line); }
+.dia { font-family: var(--mono); text-align: center; line-height: 1.15; }
+.dia b { display: block; font-family: var(--display); font-size: 40px; font-weight: 800; color: var(--teja); }
+.dia span { font-size: 13px; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); }
+.fecha h3 { font-size: 22px; font-weight: 700; }
+.fecha p { margin: 4px 0 0; color: var(--muted); font-size: 16px; }
+.pronto { font-family: var(--mono); font-size: 13px; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); border: 1px dashed var(--line); padding: 10px 12px; border-radius: 6px; white-space: nowrap; }
+.fecha .btn { font-size: 15px; padding: 10px 14px; }
+.fecha > div { min-width: 0; }
+
+/* Video */
+.video-row { display: grid; grid-template-columns: minmax(0, 340px) 1fr; gap: 32px; align-items: center; }
+video { width: 100%; max-width: 100%; aspect-ratio: 9 / 16; background: #000; border-radius: 10px; display: block; }
+.video-row p { margin: 0; max-width: 40ch; }
+
+/* El yeite */
+.def { display: grid; gap: 14px; max-width: 62ch; }
+.def .palabra { font-family: var(--display); font-size: clamp(40px, 9vw, 72px); font-weight: 800; color: var(--follaje); line-height: 1; }
+:root[data-theme="dark"] .def .palabra { color: var(--cielo); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .def .palabra { color: var(--cielo); } }
+.def .fon { font-family: var(--mono); font-size: 14px; color: var(--muted); }
+.def ol { margin: 0; padding-left: 1.3em; display: grid; gap: 8px; }
+.def blockquote { margin: 0; padding-left: 16px; border-left: 3px solid var(--teja); font-style: italic; }
+
+/* La banda */
+.banda-foto { width: 100%; height: auto; border-radius: 10px; display: block; }
+.integrantes { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+.integrante { display: grid; gap: 8px; }
+.integrante img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 8px; display: block; }
+.integrante h3 { font-size: 20px; font-weight: 700; }
+.integrante span { font-family: var(--mono); font-size: 13px; color: var(--muted); }
+
+/* Kit de prensa */
+.kit { display: grid; grid-template-columns: 1fr 1fr; gap: 32px 40px; }
+.kit > div { min-width: 0; display: grid; gap: 12px; align-content: start; }
+.kit h3 { font-size: 20px; font-weight: 700; }
+.kit p { margin: 0; }
+dl { margin: 0; display: grid; grid-template-columns: max-content 1fr; gap: 6px 16px; font-size: 16px; }
+dt { font-family: var(--mono); font-size: 13px; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); padding-top: 3px; }
+dd { margin: 0; }
+.tabla { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-family: var(--mono); font-size: 13px; font-variant-numeric: tabular-nums; }
+th, td { text-align: left; padding: 7px 10px 7px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { color: var(--muted); font-weight: 400; text-transform: uppercase; letter-spacing: .08em; }
+.nota { font-size: 15px; color: var(--muted); }
+.contacto { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+.handle { font-family: var(--mono); font-size: 16px; background: var(--surface); border: 1px solid var(--line); padding: 10px 12px; border-radius: 6px; user-select: all; }
+
+footer { background: var(--follaje); color: var(--sobre-verde); }
+footer .wrap { padding-block: 28px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font-family: var(--mono); font-size: 14px; }
+footer b { font-family: var(--display); font-size: 20px; }
+
+@media (max-width: 720px) {
+  body { font-size: 17px; }
+  .video-row, .kit { grid-template-columns: 1fr; }
+  .integrantes { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .fecha { grid-template-columns: 78px 1fr; }
+  .fecha::before { left: 96px; }
+  .fecha .acc { grid-column: 2; }
+  .dia b { font-size: 32px; }
+}
+@media (prefers-reduced-motion: no-preference) { .btn { transition: transform .15s ease; } .btn:hover { transform: translateY(-2px); } }
+</style>
+<style>*{box-sizing:border-box}body{margin:0}img{max-width:100%}</style>
+</head>
+<body>
+
+
+<header class="top">
+  <div class="wrap">
+    <img class="cartel" src="cartel.png" alt="Y.E.I.T.E., el cartel de la banda" width="3340" height="1192">
+    <div class="lema">Cada loco con su yeite.</div>
+    <p>Rock de autor desde Ciudad Jardín. Cuatro amigos, canciones propias y coros a dos voces.</p>
+    <div class="actions">
+      <a class="btn solid" href="#fechas">Próximas fechas</a>
+      <a class="btn" href="https://www.instagram.com/yeite.banda" target="_blank" rel="noopener">Instagram @yeite.banda</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section id="fechas">
+    <div class="wrap stack">
+      <span class="label">Próximas fechas</span>
+      <h2>Vení a escucharnos</h2>
+      <div class="fechas">
+        <article class="fecha">
+          <div class="dia"><span>Dom</span><b>22</b><span>Nov</span></div>
+          <div><h3>Ituzaingó</h3><p>Lugar y hora a confirmar · con dos bandas más</p></div>
+          <div class="acc"><span class="pronto">Entradas muy pronto</span></div>
+        </article>
+        <article class="fecha">
+          <div class="dia"><span>Lun</span><b>7</b><span>Dic</span></div>
+          <div><h3>El Emergente · Almagro</h3><p>Abrimos la noche de Laura Hall</p></div>
+          <div class="acc"><a class="btn solid" href="https://events.flashpass.com.ar/eventos/laura-hall-en-vivo-7900" target="_blank" rel="noopener">Entradas</a></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap video-row">
+      <video controls playsinline preload="metadata" poster="en-el-valle-poster.jpg" aria-label="En el valle, ensayo">
+        <source src="en-el-valle.mp4" type="video/mp4">
+      </video>
+      <div class="stack">
+        <span class="label">En el valle · ensayo</span>
+        <h2>Las dos voces</h2>
+        <p>Eze canta, Mati hace los coros y el estribillo se arma entre los dos. Así suena en la sala, sin retoques.</p>
+        <p><a href="https://www.instagram.com/yeite.banda" target="_blank" rel="noopener">Más videos en Instagram</a></p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap def">
+      <span class="label">Diccionario de barrio</span>
+      <div class="palabra">yeite</div>
+      <div class="fon">[shéi·te] · sustantivo · lunfardo</div>
+      <ol>
+        <li>Una manera particular de hacer las cosas. La tuya.</li>
+        <li>En la música, la forma propia de tocar de cada uno.</li>
+      </ol>
+      <blockquote>Esa puerta tiene su yeite: para cerrarla, empujás para arriba y después para adentro.</blockquote>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap stack">
+      <span class="label">La banda</span>
+      <h2>Cuatro yeites</h2>
+      <img class="banda-foto" src="banda-1.jpg" alt="Yeite tocando en Graf, Ciudad Jardín" width="1400" height="1037">
+      <div class="integrantes">
+        <div class="integrante"><img src="eze-sonrisa.jpg" alt="Eze cantando" loading="lazy"><h3>Eze</h3><span>voz y guitarra</span></div>
+        <div class="integrante"><img src="mati.jpg" alt="Mati con la guitarra" loading="lazy"><h3>Mati</h3><span>guitarra y coros</span></div>
+        <div class="integrante"><img src="luquitas.jpg" alt="Luquitas con el bajo" loading="lazy"><h3>Luquitas</h3><span>bajo</span></div>
+        <div class="integrante"><img src="fero.jpg" alt="Fero en la batería" loading="lazy"><h3>Fero</h3><span>batería y samples</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="prensa">
+    <div class="wrap stack">
+      <span class="label">Para lugares y productores</span>
+      <h2>Kit de prensa</h2>
+      <div class="kit">
+        <div>
+          <h3>Quiénes son</h3>
+          <p>Yeite es una banda de rock de autor de Ciudad Jardín, en el oeste del conurbano. Son cuatro amigos del barrio que tocan canciones propias, con letras que van del agua y la tierra a la vida de ciudad, y una marca registrada: los coros a dos voces.</p>
+          <p>Su casa es Graf, el bar de Ciudad Jardín donde tocan seguido. Escuchan a Cerati, Spinetta, Bob Marley, The Beatles y La Bersuit.</p>
+        </div>
+        <div>
+          <h3>Datos</h3>
+          <dl>
+            <dt>Formación</dt><dd>2 guitarras, bajo, batería con samples, 2 voces</dd>
+            <dt>Zona</dt><dd>Ciudad Jardín · zona oeste</dd>
+            <dt>Set</dt><dd>40 a 60 minutos de temas propios</dd>
+            <dt>Temas</dt><dd>Floto, En el valle, Valoraremos, Charuto, Nunca encontró, Páramo, Sueños de sal y río</dd>
+          </dl>
+        </div>
+        <div>
+          <h3>Dónde tocamos</h3>
+          <dl>
+            <dt>30/8/2026</dt><dd>Graf, Ciudad Jardín</dd>
+            <dt>12/10/2026</dt><dd>Graf, Ciudad Jardín</dd>
+            <dt>22/11/2026</dt><dd>Ituzaingó</dd>
+            <dt>7/12/2026</dt><dd>El Emergente, Almagro</dd>
+          </dl>
+        </div>
+        <div>
+          <h3>Rider técnico</h3>
+          <div class="tabla">
+            <table>
+              <thead><tr><th>Canal</th><th>Fuente</th><th>Toma</th></tr></thead>
+              <tbody>
+                <tr><td>1</td><td>Bombo</td><td>Mic de bombo</td></tr>
+                <tr><td>2</td><td>Redoblante</td><td>SM57</td></tr>
+                <tr><td>3</td><td>Samples (pad)</td><td>Línea / DI</td></tr>
+                <tr><td>4</td><td>Bajo</td><td>DI</td></tr>
+                <tr><td>5</td><td>Guitarra Eze</td><td>SM57 al ampli</td></tr>
+                <tr><td>6</td><td>Guitarra Mati</td><td>SM57 al ampli</td></tr>
+                <tr><td>7</td><td>Voz Eze</td><td>SM58</td></tr>
+                <tr><td>8</td><td>Voz Mati</td><td>SM58</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="nota">Monitores: tres mezclas (voces, bajo y batería). Nos adaptamos al equipo de cada lugar.</p>
+        </div>
+      </div>
+      <div class="stack" style="gap:12px">
+        <h3 style="font-size:20px">Contacto</h3>
+        <div class="contacto">
+          <span class="handle">@yeite.banda</span>
+          <a class="btn solid" href="https://ig.me/m/yeite.banda" target="_blank" rel="noopener">Escribinos por Instagram</a>
+        </div>
+        <p class="nota">Fotos en alta y videos completos, a pedido.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <b>Tiene su yeite.</b>
+    <span>Yeite · Ciudad Jardín · 2026</span>
+  </div>
+</footer>
+
+</body>
+</html>

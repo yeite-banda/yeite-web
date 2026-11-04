@@ -6,41 +6,42 @@
 <title>Yeite</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="description" content="Yeite: rock de autor desde Ciudad Jardín. Próximas fechas, música, videos y kit de prensa.">
-<meta name="theme-color" content="#7CC4E8">
+<meta name="theme-color" content="#2F7D3A">
 <link rel="icon" href="favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="image" href="vinilo-disco.webp">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:wght@500;700;800;900&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=Space+Mono:wght@400;700&display=swap">
 <style>
-/* Paleta "Ciudad Jardín a todo color" (opción 3) usada con más medida: cal y tronco de base, follaje como marca, sol solo para lo importante.
-   Movimiento: marcado pero sobrio. Entradas una sola vez, vinilo que gira con la música, nada en loop que distraiga. */
+/* Paleta "Ciudad Jardín a todo color" (opción 3) con el verde de protagonista.
+   Portada "El disco" (A) + próxima fecha como afiche (C). Sin marrón: tinta verde oscura y verde monte para lo oscuro. */
 :root {
   --follaje: #2F7D3A;
-  --follaje-osc: #1F5A28;
+  --follaje-osc: #1E5A28;
+  --monte: #12301B;       /* verde muy oscuro: secciones oscuras */
   --teja: #D2553A;
-  --teja-txt: #A8402A;
+  --teja-txt: #B4452D;
   --cielo: #7CC4E8;
   --sol: #F4C542;
   --cal: #F4EEDF;
-  --cal-2: #EBE2CC;
-  --tronco: #4A2F1C;
-  --noche: #2A1B10;      /* tronco profundo para las secciones oscuras */
-  --bg: var(--cal); --surface: var(--cal-2); --fg: var(--tronco); --muted: #6B5442; --line: rgba(74,47,28,.18); --link: var(--teja-txt);
+  --cal-2: #EAE3D1;
+  --tinta: #16241A;       /* texto: negro verdoso */
+  --bg: var(--cal); --surface: var(--cal-2); --fg: var(--tinta); --muted: #4E5B51; --line: rgba(22,36,26,.16); --link: var(--teja-txt);
   --display: "Rubik", "Helvetica Neue", Arial, sans-serif;
   --body: "Source Serif 4", Georgia, "Times New Roman", serif;
   --mono: "Space Mono", ui-monospace, Menlo, Consolas, monospace;
   --ease: cubic-bezier(.2,.8,.2,1);
 }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
-  --bg: #1B1610; --surface: #251E16; --fg: #F4EEDF; --muted: #CDBFA8; --line: rgba(244,238,223,.14); --link: #F2927A; color-scheme: dark } }
+  --bg: #0F1F14; --surface: #172A1D; --fg: #F4EEDF; --muted: #BFC8BC; --line: rgba(244,238,223,.14); --link: #F2927A; color-scheme: dark } }
 :root[data-theme="dark"] {
-  --bg: #1B1610; --surface: #251E16; --fg: #F4EEDF; --muted: #CDBFA8; --line: rgba(244,238,223,.14); --link: #F2927A; color-scheme: dark }
+  --bg: #0F1F14; --surface: #172A1D; --fg: #F4EEDF; --muted: #BFC8BC; --line: rgba(244,238,223,.14); --link: #F2927A; color-scheme: dark }
 
 *{box-sizing:border-box}
 html, body { overflow-x: clip; }
 body { margin: 0; background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 18px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
 img { max-width: 100%; }
-.wrap { max-width: 1080px; margin: 0 auto; padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); }
+.wrap { max-width: 1120px; margin: 0 auto; padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); }
 a { color: var(--link); text-underline-offset: 3px; }
 :focus-visible { outline: 3px solid var(--sol); outline-offset: 3px; }
 h1, h2, h3 { font-family: var(--display); line-height: 1.05; text-wrap: balance; margin: 0; }
@@ -51,85 +52,67 @@ section { padding-block: clamp(64px, 10vw, 112px); }
 .stack { display: grid; gap: 22px; }
 
 /* Botones */
-.btn { display: inline-flex; align-items: center; gap: 10px; font-family: var(--display); font-weight: 700; font-size: 16px; padding: 14px 22px; border-radius: 999px; text-decoration: none; border: 2px solid currentColor; color: inherit; position: relative; overflow: hidden; isolation: isolate; }
-.btn.solid { background: var(--sol); border-color: var(--sol); color: var(--noche); }
-.btn .flecha { transition: transform .35s var(--ease); }
-.btn:hover .flecha { transform: translateX(4px); }
+.btn { display: inline-flex; align-items: center; gap: 10px; font-family: var(--display); font-weight: 700; font-size: 16px; padding: 14px 22px; border-radius: 999px; text-decoration: none; border: 2px solid currentColor; color: inherit; transition: transform .3s var(--ease), background-color .3s var(--ease); }
+.btn:hover { transform: translateY(-2px); }
+.btn.solid { background: var(--sol); border-color: var(--sol); color: var(--tinta); }
+.btn.oscuro { background: var(--tinta); border-color: var(--tinta); color: var(--cal); }
+.btn svg { width: 16px; height: 16px; }
 
-/* ---------- Cabecera: foto de Graf, chapa y una línea ---------- */
-.hero { position: relative; min-height: min(86vh, 760px); display: grid; align-items: center; color: var(--tronco); background: var(--cielo); overflow: hidden; }
-/* El sol: rayos en cuña y un disco, gira despacio */
-.sol { position: absolute; width: min(78vw, 760px); aspect-ratio: 1; right: max(-260px, -22vw); top: max(-300px, -26vw); pointer-events: none; will-change: transform; }
-.sol .rayos { position: absolute; inset: 0; border-radius: 50%; background: repeating-conic-gradient(var(--sol) 0deg 8deg, transparent 8deg 18deg); }
-.sol .disco-sol { position: absolute; inset: 30%; border-radius: 50%; background: var(--sol); }
-.hero .wrap { position: relative; z-index: 1; width: 100%; padding-block: 110px 80px; display: grid; gap: 28px; justify-items: start; }
-.chapa { display: inline-block; background: var(--follaje); border: 7px solid var(--tronco); padding: .26em .5em .4em; position: relative; box-shadow: 10px 10px 0 rgba(74,47,28,.18); transform-origin: 50% -40px;
-  font-family: var(--display); font-weight: 700; font-size: clamp(44px, 11vw, 120px); line-height: 1; letter-spacing: .03em; color: var(--cal); }
+/* ---------- Disco realista (lo usan la portada y el tocadiscos) ---------- */
+.disco { position: relative; aspect-ratio: 1; }
+.disco img { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.disco .gira { will-change: transform; }
+.disco .brillo { pointer-events: none; }
+
+/* ---------- Portada A: el disco ---------- */
+.hero { position: relative; min-height: 100svh; background: var(--follaje); color: var(--cal); overflow: hidden; display: flex; }
+.hero .wrap { position: relative; z-index: 2; width: 100%; padding-top: clamp(28px, 7vh, 96px); padding-bottom: 46vw; display: grid; gap: 20px; align-content: start; justify-items: start; }
+.hero .label { color: rgba(244,238,223,.85); }
+.chapa { display: inline-block; background: var(--follaje-osc); border: 6px solid var(--cal); padding: .24em .5em .42em; position: relative;
+  font-family: var(--display); font-weight: 700; font-size: clamp(46px, 13vw, 112px); line-height: 1; letter-spacing: .03em; color: var(--cal); }
 .chapa::after { content: ""; position: absolute; left: .5em; right: .5em; bottom: .2em; height: .085em; background: var(--cal); transform-origin: left; }
 .chapa .l { display: inline-block; }
-.hero p { margin: 0; font-size: clamp(19px, 2.4vw, 23px); max-width: 40ch; color: var(--tronco); font-weight: 600; }
-.actions { display: flex; flex-wrap: wrap; gap: 14px; }
-.hero .btn { box-shadow: 4px 4px 0 var(--tronco); }
-.hero .btn.solid { border-color: var(--tronco); }
-.hero .btn:not(.solid) { color: var(--tronco); background: var(--cal); border-color: var(--tronco); }
+.hero p { margin: 0; font-size: clamp(18px, 2.2vw, 22px); max-width: 32ch; }
+.hero .acciones { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.chip { display: inline-flex; align-items: center; gap: 10px; background: var(--cal); color: var(--tinta); border-radius: 999px; padding: 6px 6px 6px 16px; font-family: var(--display); font-weight: 700; font-size: 15px; text-decoration: none; }
+.chip span.ir { background: var(--follaje); color: var(--cal); border-radius: 999px; padding: 8px 14px; font-size: 14px; }
+.hero-disco { position: absolute; z-index: 1; width: min(132vw, 1000px); left: 50%; bottom: calc(-1 * min(52vw, 500px)); transform: translateX(-50%); filter: drop-shadow(0 30px 50px rgba(0,0,0,.35)); }
+@media (min-width: 900px) {
+  .hero .wrap { padding-bottom: 96px; align-content: center; }
+  .hero-disco { width: min(68vw, 860px); left: auto; right: max(-180px, -12vw); top: 50%; bottom: auto; transform: translateY(-50%); }
+}
 
-/* Barra de la próxima fecha */
-.proxima { background: var(--sol); color: var(--noche); }
-.proxima .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 24px; padding-block: 16px; font-family: var(--display); font-weight: 700; font-size: 17px; }
-.proxima b { font-weight: 900; }
-.proxima a { color: var(--noche); font-family: var(--mono); font-size: 13px; text-transform: uppercase; letter-spacing: .1em; }
+/* ---------- Próxima fecha: afiche (C) ---------- */
+.afiche { background: var(--cal); color: var(--tinta); padding-block: clamp(56px, 9vw, 104px); border-bottom: 1px solid var(--line); }
+.afiche .wrap { display: grid; gap: 14px; }
+.afiche .label { color: var(--muted); }
+.afiche .dia { font-family: var(--display); font-weight: 900; font-size: clamp(104px, 30vw, 300px); line-height: .82; letter-spacing: -.05em; color: var(--teja); margin: 6px 0 4px; }
+.afiche .dia em { font-style: normal; color: var(--follaje); }
+.afiche h3 { font-size: clamp(32px, 7vw, 60px); font-weight: 800; letter-spacing: -.01em; }
+.afiche .datos { font-family: var(--mono); font-size: 13px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.afiche .datos a { color: inherit; }
+.afiche .acciones { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 10px; }
+.mas-fechas { margin-top: clamp(28px, 5vw, 48px); padding-top: 22px; border-top: 1px solid var(--line); display: grid; gap: 12px; }
+.mini-fecha { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 24px; }
+.mini-fecha b { font-family: var(--display); font-size: 22px; font-weight: 800; }
+.mini-fecha span { color: var(--muted); }
+.mini-fecha .btn { padding: 10px 18px; font-size: 15px; color: var(--fg); }
 
-/* ---------- Fechas ---------- */
-.fechas { display: grid; gap: 14px; margin-top: 12px; }
-.fecha { display: grid; grid-template-columns: 120px 1fr auto; gap: 24px; align-items: center; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 22px 26px; transition: transform .4s var(--ease), box-shadow .4s var(--ease); }
-.fecha:hover { transform: translateY(-3px); box-shadow: 0 18px 40px -24px rgba(42,27,16,.45); }
-.dia { font-family: var(--mono); line-height: 1.1; border-right: 1px solid var(--line); padding-right: 20px; }
-.dia b { display: block; font-family: var(--display); font-size: 52px; font-weight: 900; color: var(--follaje); letter-spacing: -.03em; }
-:root[data-theme="dark"] .dia b { color: var(--sol); }
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .dia b { color: var(--sol); } }
-.dia span { font-size: 12px; text-transform: uppercase; letter-spacing: .14em; color: var(--muted); }
-.fecha h3 { font-size: 24px; font-weight: 800; }
-.fecha p { margin: 6px 0 0; color: var(--muted); font-size: 16px; }
-.fecha .btn { font-size: 15px; padding: 12px 18px; }
-.fecha .btn:not(.solid) { color: var(--fg); }
-.fecha > div { min-width: 0; }
-
-/* ---------- Disco: vinilo + Graf en vivo ---------- */
-.disco { background: var(--noche); color: var(--cal); position: relative; overflow: hidden; }
-.disco .label { color: #CDBFA8; }
-.disco-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: clamp(32px, 6vw, 80px); align-items: center; }
-.tocadiscos { position: relative; width: min(100%, 500px); aspect-ratio: 1; margin-inline: auto; }
-.plato { position: absolute; inset: 0; border-radius: 50%; background: #1A120B; box-shadow: 0 40px 80px -30px rgba(0,0,0,.7), inset 0 0 0 10px #22170E; }
-.vinilo { position: absolute; inset: 4%; border-radius: 50%;
-  background:
-    radial-gradient(circle, transparent 0 31%, rgba(255,255,255,.05) 31.5%, transparent 32.5%),
-    radial-gradient(circle, transparent 0 46%, rgba(255,255,255,.035) 49%, transparent 53% 70%, rgba(255,255,255,.03) 74%, transparent 79% 90%, rgba(255,255,255,.045) 95%, transparent 99%),
-    repeating-radial-gradient(circle, #141312 0 1.6px, #1f1d1b 1.6px 3.2px);
-  box-shadow: inset 0 0 0 2px #0b0b0b; will-change: transform; }
-.etiqueta { position: absolute; inset: 33%; border-radius: 50%; background: var(--follaje); display: grid; place-items: center; text-align: center; color: var(--cal); box-shadow: inset 0 0 0 3px var(--follaje-osc); }
-.etiqueta { container-type: inline-size; }
-.etiqueta .y { position: relative; z-index: 1; font-family: var(--display); font-weight: 700; font-size: 58cqw; line-height: 1; letter-spacing: .02em; margin-top: -4cqw; }
-/* Etiqueta gastada: bordes comidos, manchas y el color lavado */
-.etiqueta::before { content: ""; position: absolute; inset: 0; border-radius: 50%; pointer-events: none;
-  background:
-    radial-gradient(circle at 50% 50%, transparent 58%, rgba(20,40,18,.35) 74%, rgba(10,25,10,.55) 100%),
-    radial-gradient(ellipse 22% 14% at 26% 30%, rgba(244,238,223,.16), transparent 70%),
-    radial-gradient(ellipse 16% 22% at 74% 68%, rgba(244,238,223,.12), transparent 70%),
-    radial-gradient(ellipse 30% 10% at 62% 18%, rgba(60,40,20,.22), transparent 70%),
-    radial-gradient(ellipse 12% 18% at 20% 76%, rgba(60,40,20,.2), transparent 70%); }
-.gastado { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; mix-blend-mode: screen; }
-.etiqueta .y span { display: inline-block; border-bottom: 4.5cqw solid var(--cal); padding: 0 1cqw 2cqw 3cqw; }
-
-.brillo { position: absolute; inset: 4%; border-radius: 50%; pointer-events: none;
-  background: conic-gradient(from 210deg, transparent 0 12%, rgba(255,255,255,.10) 18%, transparent 26% 62%, rgba(255,255,255,.07) 68%, transparent 76%); mix-blend-mode: screen; }
-.pulso { position: absolute; inset: 4%; border-radius: 50%; pointer-events: none; box-shadow: 0 0 0 0 rgba(244,197,66,0); transition: box-shadow .12s linear; }
-.brazo { position: absolute; top: -2%; right: -4%; width: 34%; height: 76%; transform-origin: 72% 9%; transform: rotate(-16deg); transition: transform 1.1s var(--ease); pointer-events: none; }
+/* ---------- Escuchar: tocadiscos + Graf en vivo ---------- */
+.escuchar { background: var(--monte); color: var(--cal); position: relative; overflow: hidden; }
+.escuchar .label { color: #BFC8BC; }
+.escuchar-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: clamp(32px, 6vw, 80px); align-items: center; }
+.tocadiscos { position: relative; width: min(100%, 520px); aspect-ratio: 1; margin-inline: auto; }
+.plato { position: absolute; inset: 0; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #23352A, #0C1A11 70%); box-shadow: 0 40px 80px -30px rgba(0,0,0,.7), inset 0 0 0 1px rgba(255,255,255,.06); }
+.tocadiscos .disco { position: absolute; inset: 3.5%; }
+.pulso { position: absolute; inset: 3.5%; border-radius: 50%; pointer-events: none; transition: box-shadow .12s linear; }
+.brazo { position: absolute; top: -2%; right: -4%; width: 34%; height: 76%; transform-origin: 72% 9%; transform: rotate(-16deg); transition: transform 1.1s var(--ease); pointer-events: none; filter: drop-shadow(6px 10px 8px rgba(0,0,0,.45)); }
 .tocadiscos.sonando .brazo { transform: rotate(13deg); }
 .brazo svg { width: 100%; height: 100%; overflow: visible; }
 
-.player { display: grid; gap: 16px; margin-top: 30px; width: min(100%, 500px); margin-inline: auto; }
+.player { display: grid; gap: 16px; margin-top: 30px; width: min(100%, 520px); margin-inline: auto; }
 .player-fila { display: flex; align-items: center; gap: 16px; }
-.play { width: 64px; height: 64px; flex: none; border-radius: 50%; border: 0; background: var(--sol); color: var(--noche); display: grid; place-items: center; cursor: pointer; transition: transform .3s var(--ease); }
+.play { width: 64px; height: 64px; flex: none; border-radius: 50%; border: 0; background: var(--sol); color: var(--tinta); display: grid; place-items: center; cursor: pointer; transition: transform .3s var(--ease); }
 .play:hover { transform: scale(1.06); }
 .play svg { width: 26px; height: 26px; }
 .play .i-pausa { display: none; }
@@ -137,16 +120,12 @@ section { padding-block: clamp(64px, 10vw, 112px); }
 .play[aria-pressed="true"] .i-pausa { display: block; }
 .tema { min-width: 0; }
 .tema b { display: block; font-family: var(--display); font-size: 20px; font-weight: 800; }
-.tema span { font-family: var(--mono); font-size: 13px; color: #CDBFA8; }
-.barra { display: flex; align-items: center; gap: 12px; font-family: var(--mono); font-size: 12px; color: #CDBFA8; font-variant-numeric: tabular-nums; }
+.tema span { font-family: var(--mono); font-size: 13px; color: #BFC8BC; }
+.barra { display: flex; align-items: center; gap: 12px; font-family: var(--mono); font-size: 12px; color: #BFC8BC; font-variant-numeric: tabular-nums; }
 .barra input { flex: 1; accent-color: var(--sol); height: 24px; }
 
-.envivo { display: grid; gap: 22px; }
+.envivo { display: grid; gap: 18px; }
 .envivo video { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 14px; display: block; background: #000; }
-.envivo h2 { color: var(--cal); }
-.envivo p { margin: 0; max-width: 44ch; color: #E6DCC8; }
-.marco { position: relative; }
-.marco figcaption { position: absolute; left: 14px; bottom: 14px; font-family: var(--mono); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; background: rgba(42,27,16,.85); color: var(--cal); padding: 8px 12px; border-radius: 999px; }
 
 /* ---------- Diccionario ---------- */
 .def { display: grid; gap: 16px; max-width: 680px; }
@@ -183,58 +162,44 @@ th { color: var(--muted); font-weight: 400; text-transform: uppercase; letter-sp
 .nota { font-size: 15px; color: var(--muted); }
 .contacto { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
 .handle { font-family: var(--mono); font-size: 16px; background: var(--bg); border: 1px solid var(--line); padding: 12px 16px; border-radius: 999px; user-select: all; }
-#prensa .btn:not(.solid) { color: var(--fg); }
 
-footer { background: var(--noche); color: var(--cal); }
+footer { background: var(--follaje); color: var(--cal); }
 footer .wrap { padding-block: 36px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; font-family: var(--mono); font-size: 13px; letter-spacing: .06em; }
 footer b { font-family: var(--display); font-weight: 900; font-size: 26px; color: var(--sol); letter-spacing: 0; }
 
 @media (max-width: 820px) {
-  .disco-grid { grid-template-columns: 1fr; }
+  .escuchar-grid { grid-template-columns: 1fr; }
   .integrantes { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .kit { grid-template-columns: 1fr; }
 }
-@media (max-width: 640px) {
-  body { font-size: 17px; }
-  .fecha { grid-template-columns: 84px 1fr; gap: 16px; padding: 18px; }
-  .dia { padding-right: 14px; }
-  .dia b { font-size: 40px; }
-  .fecha .acc { grid-column: 1 / -1; }
-  .hero { min-height: 640px; }
-  .chapa { border-width: 5px; }
-}
+@media (max-width: 640px) { body { font-size: 17px; } .chapa { border-width: 4px; } }
 
 /* ---------- Movimiento (solo si no se pidió menos) ---------- */
 @media (prefers-reduced-motion: no-preference) {
-  /* Foto de la cabecera: acercamiento lento al cargar */
-  /* Sol: aparece y gira lento (una vuelta cada 2 minutos) */
-  .sol { animation: sol-entra 1.6s var(--ease) both; }
-  .sol .rayos { animation: girar 120s linear infinite; }
-  @keyframes sol-entra { from { opacity: 0; transform: scale(.85) rotate(-20deg); } to { opacity: 1; transform: none; } }
+  .hero-disco { animation: disco-entra 1.6s var(--ease) .1s both; }
+  @keyframes disco-entra { from { opacity: 0; translate: 0 60px; rotate: -30deg; } to { opacity: 1; translate: 0 0; rotate: 0deg; } }
+  .hero-disco .gira { animation: girar 14s linear infinite; }
   @keyframes girar { to { transform: rotate(360deg); } }
 
-  /* Chapa: entra una vez, letras de abajo hacia arriba y el subrayado se dibuja */
-  /* La chapa entra una vez y después se hamaca apenas, como colgada de un clavo */
-  .chapa { animation: chapa 1s var(--ease) .2s both, vaiven 7s ease-in-out 1.2s infinite; }
+  .chapa { animation: chapa 1s var(--ease) .2s both; }
   @keyframes chapa { from { opacity: 0; transform: translateY(30px) rotate(-2deg); } to { opacity: 1; transform: rotate(-1deg); } }
-  @keyframes vaiven { 0%, 100% { transform: rotate(-1deg); } 50% { transform: rotate(.6deg); } }
   .chapa .l { animation: letra .8s var(--ease) both; }
   .chapa .l:nth-child(1) { animation-delay: .45s; } .chapa .l:nth-child(2) { animation-delay: .53s; } .chapa .l:nth-child(3) { animation-delay: .61s; }
   .chapa .l:nth-child(4) { animation-delay: .69s; } .chapa .l:nth-child(5) { animation-delay: .77s; }
   @keyframes letra { from { opacity: 0; transform: translateY(60%); } to { opacity: 1; transform: none; } }
   .chapa::after { animation: raya .9s var(--ease) 1.05s both; }
   @keyframes raya { from { transform: scaleX(0); } to { transform: scaleX(1); } }
-  .hero p, .hero .actions { animation: subir .9s var(--ease) both; }
-  .hero p { animation-delay: 1.1s; } .hero .actions { animation-delay: 1.25s; }
+  .hero .label, .hero p, .hero .acciones { animation: subir .9s var(--ease) both; }
+  .hero .label { animation-delay: .1s; } .hero p { animation-delay: 1.1s; } .hero .acciones { animation-delay: 1.25s; }
   @keyframes subir { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
 
-  /* Aparecer al scrollear */
   .js .rev { opacity: 0; transform: translateY(44px); transition: opacity .9s var(--ease), transform 1s var(--ease); }
   .js .rev.ok { opacity: 1; transform: none; }
   .js h2.rev { clip-path: inset(0 0 100% 0); transform: translateY(24px); transition: clip-path 1s var(--ease), transform 1s var(--ease), opacity .6s; }
   .js h2.rev.ok { clip-path: inset(0 0 -10% 0); }
+  .js .afiche .dia.rev { transform: translateY(60px) scale(.96); transition: opacity 1s var(--ease), transform 1.2s var(--ease); }
+  .js .afiche .dia.rev.ok { transform: none; }
   .js .integrantes .rev:nth-child(2) { transition-delay: .08s; } .js .integrantes .rev:nth-child(3) { transition-delay: .16s; } .js .integrantes .rev:nth-child(4) { transition-delay: .24s; }
-  .js .fechas .rev:nth-child(2) { transition-delay: .1s; }
   .js .tocadiscos.rev { transform: translateX(-60px) rotate(-25deg); transition: opacity 1s var(--ease), transform 1.4s var(--ease); }
   .js .tocadiscos.rev.ok { transform: none; }
 }
@@ -244,60 +209,56 @@ footer b { font-family: var(--display); font-weight: 900; font-size: 26px; color
 <body>
 
 <header class="hero">
-  <div class="sol" id="sol" aria-hidden="true"><div class="rayos"></div><div class="disco-sol"></div></div>
   <div class="wrap">
+    <span class="label">Rock de autor · Ciudad Jardín</span>
     <h1 class="chapa" aria-label="Yeite"><span class="l" aria-hidden="true">Y.</span><span class="l" aria-hidden="true">E.</span><span class="l" aria-hidden="true">I.</span><span class="l" aria-hidden="true">T.</span><span class="l" aria-hidden="true">E.</span></h1>
-    <p>Rock de autor desde Ciudad Jardín. Cuatro amigos, canciones propias y coros a dos voces.</p>
-    <div class="actions">
-      <a class="btn solid" href="#escuchar">Escuchar <span class="flecha" aria-hidden="true">→</span></a>
-      <a class="btn" href="#fechas">Próximas fechas</a>
+    <p>Cuatro amigos, canciones propias y coros a dos voces.</p>
+    <div class="acciones">
+      <a class="btn solid" href="#escuchar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l13-7.5z" fill="currentColor"/></svg>Escuchar</a>
+      <a class="chip" href="#fecha">Dom 22/11 · Casa Sonora <span class="ir">Ver fecha</span></a>
     </div>
+  </div>
+  <div class="hero-disco disco" aria-hidden="true">
+    <img class="gira" src="vinilo-disco.webp" alt="" width="1200" height="1200">
+    <img class="brillo" src="vinilo-brillo.webp" alt="" width="1200" height="1200">
   </div>
 </header>
 
-<div class="proxima">
-  <div class="wrap">
-    <span><b>Dom 22/11</b> · Casa Sonora, Ituzaingó · 20 h</span>
-    <a href="#fechas">Ver la fecha →</a>
-  </div>
-</div>
-
 <main>
-  <section id="fechas">
-    <div class="wrap stack">
-      <span class="label">Próximas fechas</span>
-      <h2 class="rev">Vení a escucharnos</h2>
-      <div class="fechas">
-        <article class="fecha rev">
-          <div class="dia"><span>Dom</span><b>22</b><span>Nov</span></div>
-          <div><h3>Casa Sonora · Ituzaingó</h3><p><a href="https://www.google.com/maps/search/?api=1&amp;query=Rondeau%20173%2C%20Ituzaing%C3%B3" target="_blank" rel="noopener">Rondeau 173</a> · 20 h · con AM Trio y Feliz Navidad Che</p></div>
-          <div class="acc"><a class="btn solid" href="https://wa.me/5491176235360?text=Hola%21%20Quiero%20entradas%20anticipadas%20para%20el%20domingo%2022%2F11%20en%20Casa%20Sonora.%20Vengo%20por%20Yeite%20%F0%9F%94%A5" target="_blank" rel="noopener">Entradas por WhatsApp</a></div>
-        </article>
-        <article class="fecha rev">
-          <div class="dia"><span>Lun</span><b>7</b><span>Dic</span></div>
-          <div><h3>El Emergente · Almagro</h3><p>Abrimos la noche de Laura Hall</p></div>
-          <div class="acc"><a class="btn" href="https://events.flashpass.com.ar/eventos/laura-hall-en-vivo-7900" target="_blank" rel="noopener">Entradas</a></div>
-        </article>
+  <section class="afiche" id="fecha">
+    <div class="wrap">
+      <span class="label">Próxima fecha · Domingo · 20 h</span>
+      <div class="dia rev" aria-label="22 de noviembre">22<em>.</em>11</div>
+      <h3>Casa Sonora</h3>
+      <div class="datos"><a href="https://www.google.com/maps/search/?api=1&amp;query=Rondeau%20173%2C%20Ituzaing%C3%B3" target="_blank" rel="noopener">Rondeau 173 · Ituzaingó</a> · con AM Trio y Feliz Navidad Che</div>
+      <div class="acciones">
+        <a class="btn oscuro" href="https://wa.me/5491176235360?text=Hola%21%20Quiero%20entradas%20anticipadas%20para%20el%20domingo%2022%2F11%20en%20Casa%20Sonora.%20Vengo%20por%20Yeite%20%F0%9F%94%A5" target="_blank" rel="noopener">Entradas por WhatsApp</a>
+      </div>
+      <div class="mas-fechas">
+        <span class="label">Después</span>
+        <div class="mini-fecha">
+          <div><b>Lun 7/12 · El Emergente</b><br><span>Almagro · abrimos la noche de Laura Hall</span></div>
+          <a class="btn" href="https://events.flashpass.com.ar/eventos/laura-hall-en-vivo-7900" target="_blank" rel="noopener">Entradas</a>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="disco" id="escuchar">
-    <div class="wrap disco-grid">
+  <section class="escuchar" id="escuchar">
+    <div class="wrap escuchar-grid">
       <div>
         <div class="tocadiscos rev" id="tocadiscos">
           <div class="plato"></div>
-          <div class="vinilo" id="vinilo">
-            <svg class="gastado" id="gastado" viewBox="-100 -100 200 200" aria-hidden="true"></svg>
-            <div class="etiqueta"><div class="y" aria-hidden="true"><span>Y.</span></div></div>
+          <div class="disco">
+            <img class="gira" id="vinilo" src="vinilo-disco.webp" alt="" width="1200" height="1200" loading="lazy">
+            <img class="brillo" src="vinilo-brillo.webp" alt="" width="1200" height="1200" loading="lazy">
           </div>
-          <div class="brillo"></div>
           <div class="pulso" id="pulso"></div>
           <div class="brazo" aria-hidden="true">
             <svg viewBox="0 0 100 220">
-              <circle cx="72" cy="20" r="15" fill="#3A2A1C" stroke="#7a6a58" stroke-width="2"/>
-              <circle cx="72" cy="20" r="6" fill="#CDBFA8"/>
-              <path d="M72 20 L74 150 Q74 170 58 186" fill="none" stroke="#CDBFA8" stroke-width="6" stroke-linecap="round"/>
+              <circle cx="72" cy="20" r="15" fill="#22362A" stroke="#8FA393" stroke-width="2"/>
+              <circle cx="72" cy="20" r="6" fill="#D9DED6"/>
+              <path d="M72 20 L74 150 Q74 170 58 186" fill="none" stroke="#D9DED6" stroke-width="6" stroke-linecap="round"/>
               <rect x="40" y="180" width="24" height="30" rx="4" transform="rotate(28 52 195)" fill="#F4C542"/>
             </svg>
           </div>
@@ -321,11 +282,9 @@ footer b { font-family: var(--display); font-weight: 900; font-size: 26px; color
 
       <div class="envivo">
         <span class="label">En vivo</span>
-        <figure class="marco rev" style="margin:0">
-          <video id="graf" muted loop playsinline preload="metadata" poster="graf-en-vivo-poster.jpg" aria-label="Momentos del show en Graf, con el público">
-            <source src="graf-en-vivo.mp4" type="video/mp4">
-          </video>
-        </figure>
+        <video id="graf" class="rev" muted loop playsinline preload="metadata" poster="graf-en-vivo-poster.jpg" aria-label="Momentos del show en Graf, con el público">
+          <source src="graf-en-vivo.mp4" type="video/mp4">
+        </video>
       </div>
     </div>
   </section>
@@ -437,40 +396,7 @@ footer b { font-family: var(--display); font-weight: 900; font-size: 26px; color
       entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('ok'); io.unobserve(e.target); } });
     }, { threshold: 0.18 });
     revs.forEach(function (el) { io.observe(el); });
-
-    // Paralaje suave del sol
-    var foto = document.getElementById('sol'), tick = false;
-    window.addEventListener('scroll', function () {
-      if (tick) return; tick = true;
-      requestAnimationFrame(function () {
-        var y = Math.min(window.scrollY, 900);
-        foto.style.translate = '0 ' + (y * 0.25) + 'px';
-        tick = false;
-      });
-    }, { passive: true });
   }
-
-  // Vinilo gastado: rayones en arco, un par de rayas rectas y polvo (siempre los mismos)
-  (function () {
-    var svg = document.getElementById('gastado'); if (!svg) return;
-    var s = 7, rnd = function () { s = (s * 9301 + 49297) % 233280; return s / 233280; };
-    var ns = 'http://www.w3.org/2000/svg', html = '';
-    for (var i = 0; i < 26; i++) {
-      var r = 36 + rnd() * 60, a0 = rnd() * 6.283, len = 0.15 + rnd() * 0.9;
-      var x0 = (r * Math.cos(a0)).toFixed(2), y0 = (r * Math.sin(a0)).toFixed(2), x1 = (r * Math.cos(a0 + len)).toFixed(2), y1 = (r * Math.sin(a0 + len)).toFixed(2);
-      html += '<path d="M' + x0 + ' ' + y0 + ' A' + r.toFixed(2) + ' ' + r.toFixed(2) + ' 0 0 1 ' + x1 + ' ' + y1 + '" fill="none" stroke="#fff" stroke-opacity="' + (0.05 + rnd() * 0.12).toFixed(3) + '" stroke-width="' + (0.15 + rnd() * 0.35).toFixed(2) + '"/>';
-    }
-    for (var j = 0; j < 4; j++) {
-      var a = rnd() * 6.283, rr = 40 + rnd() * 50, ang = a + 1.2 + rnd(), L = 12 + rnd() * 26;
-      var cx = rr * Math.cos(a), cy = rr * Math.sin(a);
-      html += '<line x1="' + cx.toFixed(2) + '" y1="' + cy.toFixed(2) + '" x2="' + (cx + L * Math.cos(ang)).toFixed(2) + '" y2="' + (cy + L * Math.sin(ang)).toFixed(2) + '" stroke="#fff" stroke-opacity="' + (0.1 + rnd() * 0.12).toFixed(3) + '" stroke-width="0.25"/>';
-    }
-    for (var k = 0; k < 70; k++) {
-      var ra = 34 + rnd() * 64, aa = rnd() * 6.283;
-      html += '<circle cx="' + (ra * Math.cos(aa)).toFixed(2) + '" cy="' + (ra * Math.sin(aa)).toFixed(2) + '" r="' + (0.15 + rnd() * 0.45).toFixed(2) + '" fill="#fff" fill-opacity="' + (0.12 + rnd() * 0.25).toFixed(3) + '"/>';
-    }
-    svg.innerHTML = html;
-  })();
 
   // ---------- Tocadiscos ----------
   var audio = document.getElementById('audio');
@@ -497,7 +423,7 @@ footer b { font-family: var(--display); font-weight: 900; font-size: 26px; color
   audio.addEventListener('timeupdate', function () { rango.value = audio.currentTime; tA.textContent = mmss(audio.currentTime); });
   rango.addEventListener('input', function () { audio.currentTime = parseFloat(rango.value); sync(); });
 
-  // Análisis para que el borde del disco respire con el bajo
+  // El borde del disco respira con el bajo
   var ctx, analizador, datos;
   function prepararAudio() {
     if (ctx || quieto) return;
@@ -523,7 +449,7 @@ footer b { font-family: var(--display); font-weight: 900; font-size: 26px; color
       analizador.getByteFrequencyData(datos);
       var graves = 0; for (var i = 1; i < 8; i++) graves += datos[i];
       var n = Math.max(0, graves / 7 / 255 - 0.45) / 0.55;
-      pulso.style.boxShadow = '0 0 ' + (10 + n * 50) + 'px ' + (n * 10) + 'px rgba(244,197,66,' + (0.08 + n * 0.32) + ')';
+      pulso.style.boxShadow = '0 0 ' + (10 + n * 50) + 'px ' + (n * 10) + 'px rgba(244,197,66,' + (0.08 + n * 0.3) + ')';
     } else { pulso.style.boxShadow = 'none'; }
     if (!audio.paused && ++cuentaSync % 60 === 0) sync();
     if (Math.abs(vel) > 0.5 || objetivoVel) requestAnimationFrame(loop); else { corriendo = false; ultimo = 0; }
@@ -549,7 +475,7 @@ footer b { font-family: var(--display); font-weight: 900; font-size: 26px; color
   btn.addEventListener('click', function () { audio.paused ? reproducir() : pausar(); });
   audio.addEventListener('ended', function () { pausar(); audio.currentTime = 0; });
 
-  // Sin música, el video corre en silencio cuando está a la vista (si la persona no pidió menos movimiento)
+  // Sin música, el video corre en silencio cuando está a la vista
   if (!quieto && 'IntersectionObserver' in window) {
     new IntersectionObserver(function (entries) {
       entries.forEach(function (e) {

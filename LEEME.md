@@ -15,7 +15,7 @@ Cada vez que se guarda un cambio acá en GitHub, Netlify la actualiza sola en un
 ## Lo más común
 
 **Una fecha nueva:** en `index.html` buscá `<article class="fecha">`. Copiá un bloque entero, desde `<article class="fecha">` hasta `</article>`, pegalo abajo y cambiá día, mes, lugar y texto.
-- Si todavía no hay entradas: `<span class="pronto">Entradas muy pronto</span>`
+- Si todavía no hay entradas: `<span class="pronto">Entradas muy pronto vía link</span>`
 - Si hay link: `<a class="btn solid" href="LINK-DE-ENTRADAS" target="_blank" rel="noopener">Entradas</a>`
 
 **Una fecha que ya pasó:** borrá su bloque `<article>...</article>` de "Próximas fechas" y sumala en "Dónde tocamos" (buscá `Dónde tocamos`) con una línea así:

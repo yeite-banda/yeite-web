@@ -8,8 +8,9 @@ Cada vez que se guarda un cambio acá en GitHub, Netlify la actualiza sola en un
 1. Entrá a este repositorio y tocá `index.html`.
 2. Tocá el lápiz ✏️ (arriba a la derecha del archivo).
 3. Buscá el texto con Cmd+F (Ctrl+F en Windows), cambialo y nada más.
-4. Abajo de todo (o botón verde **Commit changes**) escribí qué cambiaste, ej. "agrego fecha 22/11", y confirmá.
-5. Esperá un minuto y recargá la web.
+4. Tocá el botón verde **Commit changes**, escribí qué cambiaste (ej. "agrego fecha 22/11") y elegí **Create a new branch for this commit and start a pull request**. Confirmá con **Propose changes**.
+5. En la pantalla que sigue tocá **Create pull request**, y después **Merge pull request** → **Confirm merge**. (La rama `main` está protegida: los cambios entran siempre por un pull request, no hace falta que nadie lo apruebe.)
+6. Esperá un minuto y recargá la web.
 
 ## Lo más común
 
